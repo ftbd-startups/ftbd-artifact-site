@@ -989,7 +989,7 @@
     <div id="pricingCardsView">
       <div class="pricing-grid reveal">
         <div class="price-card">
-          <div class="tier-name">STARTER</div>
+          <div class="tier-name">СТАРТ</div>
           <div class="tier-slot">1 активный проект</div>
           <hr/>
           <div class="price-row"><span class="price-main">160 000&nbsp;₽</span><span class="price-period">/ мес</span></div>
@@ -1007,7 +1007,7 @@
 
         <div class="price-card highlight">
           <div class="popular-badge">⭐ Популярный</div>
-          <div class="tier-name">GROWTH</div>
+          <div class="tier-name">РОСТ</div>
           <div class="tier-slot">3 параллельных проекта</div>
           <hr/>
           <div class="price-row"><span class="price-main">360 000&nbsp;₽</span><span class="price-period">/ мес</span></div>
@@ -1024,7 +1024,7 @@
         </div>
 
         <div class="price-card">
-          <div class="tier-name">SCALE</div>
+          <div class="tier-name">МАСШТАБ</div>
           <div class="tier-slot">Выделенная команда и работа над портфелем продуктов</div>
           <hr/>
           <div class="price-row"><span class="price-main">990 000&nbsp;₽</span><span class="price-period">/ мес</span></div>
@@ -1045,7 +1045,7 @@
       <div class="pricing-table reveal">
         <table>
           <thead>
-            <tr><th>Что входит</th><th>Starter</th><th class="col-highlight">Growth ⭐</th><th>Scale</th></tr>
+            <tr><th>Что входит</th><th>Старт</th><th class="col-highlight">Рост ⭐</th><th>Масштаб</th></tr>
           </thead>
           <tbody>
             <tr><td><b>Цена в месяц</b></td><td>160 000 ₽</td><td class="col-highlight"><b>360 000 ₽</b></td><td>990 000 ₽</td></tr>
@@ -1351,10 +1351,10 @@
         <div class="form-field"><label>Telegram или телефон</label><input name="contact" placeholder="@username" required /></div>
         <div class="form-field"><label>Тариф</label>
           <select name="tier" id="tierSelect">
-            <option value="pilot">Пилот (80 000 ₽)</option>
-            <option value="starter">Starter (160 000 ₽ / мес)</option>
-            <option value="growth">Growth (360 000 ₽ / мес)</option>
-            <option value="scale">Scale (990 000 ₽ / мес)</option>
+            <option value="pilot">Пилот</option>
+            <option value="starter">Старт</option>
+            <option value="growth">Рост</option>
+            <option value="scale">Масштаб</option>
             <option value="enterprise">Корпоративный</option>
           </select>
         </div>
@@ -1492,14 +1492,14 @@ const faqData = {
   ],
   pricing: [
     { q: 'Можно ли поставить подписку на паузу?', a: 'Да, начиная с 3-го месяца. Можно приостановить работу до 1 месяца. Проекты сохраняются, прогресс не теряется.' },
-    { q: 'Что входит в каждый тариф?', a: 'Starter: 1 проект, первая версия за 5 дней. Growth: 3 проекта параллельно, дополнительный разработчик, интеграции. Scale: выделенная команда, менеджер проекта, первая версия за 3 дня, любые интеграции. Подробная таблица — в блоке «Тарифы».' },
+    { q: 'Что входит в каждый тариф?', a: '«Старт»: 1 проект, первая версия за 5 дней. «Рост»: 3 проекта параллельно, дополнительный разработчик, интеграции. «Масштаб»: выделенная команда, менеджер проекта, первая версия за 3 дня, любые интеграции. Подробная таблица — в блоке «Тарифы».' },
     { q: 'Чем пилот отличается от первого месяца подписки?', a: 'Пилот — разовая оплата 80 000 ₽ за один продукт за 5 дней. Хороший способ проверить, как мы работаем, без обязательств. Если после пилота перейдёте на подписку в течение 14 дней — стоимость пилота полностью зачтём.' },
     { q: 'Какие есть скидки?', a: '10% при оплате за 3 месяца вперёд, 20% — за 6 месяцев. Для корпоративного формата — индивидуальные условия.' },
   ],
   tech: [
     { q: 'На чём вы пишете?', a: 'Интерфейс: Next.js, React. Серверная часть: Node.js, Python. Базы данных: Postgres, Supabase. AI: Claude, GPT-4 и другие модели. Размещение: Vercel, Railway, Yandex.Cloud и другие провайдеры по запросу.' },
     { q: 'Могу ли я забрать код и работать с ним самостоятельно?', a: 'Да, всегда. Репозиторий с кодом создаётся на вашем аккаунте с первого дня. Мы работаем в нём как соавторы. Уйти можно в любой момент — код, документация и инструкции остаются у вас.' },
-    { q: 'Интегрируетесь ли вы с существующими системами?', a: 'Да: CRM (Bitrix24, amoCRM, HubSpot), внешние сервисы, системы авторизации, платёжные системы. Входит в Growth и Scale. В Starter — базовые интеграции по запросу.' },
+    { q: 'Интегрируетесь ли вы с существующими системами?', a: 'Да: CRM (Bitrix24, amoCRM, HubSpot), внешние сервисы, системы авторизации, платёжные системы. Входит в тарифы «Рост» и «Масштаб». В «Старте» — базовые интеграции по запросу.' },
     { q: 'Что вы не делаете?', a: 'Мобильные приложения для iOS и Android, создание моделей машинного обучения с нуля (только используем готовые), «железо», аудиты безопасности крупных корпораций. Всё остальное — обсуждаемо.' },
   ],
 };

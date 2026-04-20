@@ -1,0 +1,11 @@
+name = "ftbd-contact"
+main = "src/index.js"
+compatibility_date = "2025-04-01"
+account_id = "8754d6b0b9bd79f8b09432d9aee24634"
+
+routes = [
+  { pattern = "api.ftbd.dev", custom_domain = true }
+]
+
+[vars]
+ALLOWED_ORIGIN = "https://ftbd.dev"

@@ -1345,7 +1345,7 @@
     <div id="pilotForm">
       <h3 id="pilotTitle">Обсудить проект</h3>
       <p id="pilotSub">Опишите идею в 2–3 предложениях. Мы свяжемся в течение 4 рабочих часов и назначим 30-минутную встречу.</p>
-      <form onsubmit="submitPilot(event)">
+      <form id="pilotFormEl" onsubmit="submitPilot(event)">
         <div class="form-field"><label>Ваше имя</label><input name="name" required /></div>
         <div class="form-field"><label>Email</label><input type="email" name="email" required /></div>
         <div class="form-field"><label>Telegram или телефон</label><input name="contact" placeholder="@username" required /></div>
@@ -1359,7 +1359,9 @@
           </select>
         </div>
         <div class="form-field"><label>Кратко об идее</label><textarea name="idea" rows="3" required placeholder="Что хотите построить? Для кого?"></textarea></div>
-        <button type="submit" class="btn btn-accent btn-big" style="width:100%">Отправить заявку <span class="arrow">→</span></button>
+        <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true" />
+        <div id="pilotError" style="display:none; margin-bottom:12px; padding:12px 14px; background:rgba(225,29,72,0.08); border:1px solid rgba(225,29,72,0.3); border-radius:10px; color:#be123c; font-size:14px;"></div>
+        <button id="pilotSubmit" type="submit" class="btn btn-accent btn-big" style="width:100%">Отправить заявку <span class="arrow">→</span></button>
       </form>
     </div>
     <div id="pilotSuccess" style="display:none">
@@ -1598,12 +1600,33 @@ function openBooking() {
 function closeModal() {
   document.getElementById('pilotModal').classList.remove('visible');
 }
-function submitPilot(e) {
+async function submitPilot(e) {
   e.preventDefault();
-  setTimeout(() => {
+  const form = e.target;
+  const btn = document.getElementById('pilotSubmit');
+  const errBox = document.getElementById('pilotError');
+  const data = Object.fromEntries(new FormData(form).entries());
+  errBox.style.display = 'none';
+  btn.disabled = true;
+  const originalHtml = btn.innerHTML;
+  btn.innerHTML = 'Отправляем…';
+  try {
+    const res = await fetch('https://api.ftbd.dev/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    const body = await res.json().catch(() => ({}));
+    if (!res.ok || !body.ok) throw new Error(body.error || ('http_' + res.status));
     document.getElementById('pilotForm').style.display = 'none';
     document.getElementById('pilotSuccess').style.display = 'block';
-  }, 400);
+    form.reset();
+  } catch (err) {
+    errBox.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз или напишите в Telegram @ftbd_artifact.';
+    errBox.style.display = 'block';
+    btn.disabled = false;
+    btn.innerHTML = originalHtml;
+  }
 }
 document.getElementById('pilotModal').addEventListener('click', (e) => {
   if (e.target.id === 'pilotModal') closeModal();

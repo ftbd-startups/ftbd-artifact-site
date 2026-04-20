@@ -160,6 +160,25 @@
     .nav-links { display: none; }
     .burger { display: inline-flex; }
   }
+  @media (max-width: 560px) {
+    .header-cta .btn-primary { display: none; }
+  }
+  .mobile-menu {
+    position: fixed; top: 72px; left: 0; right: 0; z-index: 99;
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: saturate(180%) blur(16px);
+    -webkit-backdrop-filter: saturate(180%) blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 20px 24px; display: none;
+    flex-direction: column; gap: 4px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    padding: 14px 8px; font-size: 17px; color: var(--text);
+    border-bottom: 1px solid var(--border);
+  }
+  .mobile-menu a:last-of-type { border-bottom: none; }
+  .mobile-menu .btn { margin-top: 12px; width: 100%; justify-content: center; }
 
   /* ============== HERO ============== */
   .hero { padding: 160px 0 100px; position: relative; overflow: hidden; }
@@ -593,7 +612,7 @@
 
   /* ============== FOOTER ============== */
   .footer { padding: 80px 0 40px; border-top: 1px solid var(--border); margin-top: 80px; }
-  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 64px; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 64px; }
   @media (max-width: 860px) { .footer-top { grid-template-columns: 1fr 1fr; gap: 40px 24px; } }
   .footer-brand .logo { margin-bottom: 16px; }
   .footer-brand p { color: var(--text-muted); font-size: 14px; max-width: 28ch; }
@@ -663,14 +682,20 @@
     </a>
     <nav class="nav-links">
       <a href="#about">О студии</a>
-      <a href="#process">Playbook</a>
+      <a href="#process">Как работаем</a>
       <a href="#pricing">Тарифы</a>
     </nav>
     <div class="header-cta">
       <button class="btn btn-primary" onclick="openPilot('header')">Обсудить проект <span class="arrow">→</span></button>
-      <button class="burger" aria-label="menu"><span></span></button>
+      <button class="burger" id="burger" aria-label="menu" aria-expanded="false"><span></span></button>
     </div>
   </div>
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="#about">О студии</a>
+    <a href="#process">Как работаем</a>
+    <a href="#pricing">Тарифы</a>
+    <button class="btn btn-primary" onclick="openPilot('header')">Обсудить проект <span class="arrow">→</span></button>
+  </nav>
 </header>
 
 <!-- ====================== HERO ====================== -->
@@ -678,17 +703,17 @@
   <div class="hero-grid-bg"></div>
   <div class="hero-dots" id="heroDots"></div>
   <div class="wrap">
-    <div class="fade-up d2 eyebrow hero-eyebrow">AI Native Startup Studio</div>
-    <h1 class="h1 fade-up d3" id="heroH1">Ваша AI-инженерная команда<br/>на <span class="accent-word">подписке</span></h1>
-    <p class="lede fade-up d4 hero-lede" id="heroLede">Production-grade продукты — за дни, не месяцы</p>
+    <div class="fade-up d2 eyebrow hero-eyebrow">Студия разработки с AI</div>
+    <h1 class="h1 fade-up d3" id="heroH1">Ваша инженерная команда<br/>на <span class="accent-word">подписке</span></h1>
+    <p class="lede fade-up d4 hero-lede" id="heroLede">Работающий продукт за дни, а не месяцы</p>
     <div class="fade-up d5 hero-expl" id="heroExpl">
-      Опишите идею в 30-минутном интервью.<br/>
+      Расскажите об идее в 30-минутной встрече.<br/>
       Получите работающий продукт за 5 дней.<br/>
-      Без ТЗ. Без ограничений.
+      Без техзадания. Без ограничений.
     </div>
     <div class="fade-up d6 hero-ctas">
       <button class="btn btn-accent btn-big" onclick="openPilot('hero')">Начать с пилота <span class="arrow">→</span></button>
-      <a href="#" class="hero-secondary-link" onclick="openBooking();return false;">Или обсудить в 15-минутном звонке →</a>
+      <a href="#" class="hero-secondary-link" onclick="openBooking();return false;">Или написать нам в Telegram →</a>
     </div>
   </div>
 </section>
@@ -727,8 +752,8 @@
         <h2 class="h2">Мы — инженеры,<br/>а не агентство</h2>
       </div>
       <div class="about-right">
-        <p class="about-lede">{ftbd}Artifact — AI-native startup studio. Мы используем передовые инструменты и LLM + собственные агентные пайплайны, чтобы проходить путь от идеи до production в 5–10 раз быстрее обычной команды.</p>
-        <p class="about-lede">Но AI без инженерной культуры — это генератор технического долга. Поэтому у нас: senior-review каждой фичи, автотесты на critical path, CI/CD с первого дня, документация на русском.</p>
+        <p class="about-lede">{ftbd}Artifact — студия разработки, построенная вокруг AI. Мы используем передовые языковые модели и собственные наработки, чтобы проходить путь от идеи до запуска в 5–10 раз быстрее обычной команды.</p>
+        <p class="about-lede">Но AI без инженерной культуры — это гора технического долга. Поэтому у нас: проверка каждой доработки опытным инженером, автоматические тесты на основных сценариях, автоматический выпуск обновлений с первого дня, документация на русском.</p>
         <div class="about-meta" style="display:none">
           <div class="about-meta-item">
             <div class="about-num">5</div>
@@ -744,8 +769,8 @@
           </div>
         </div>
         <div class="about-ctas">
-          <button class="btn btn-secondary" onclick="openBooking()">Познакомиться в звонке <span class="arrow">→</span></button>
-          <a class="link-arrow" href="#process">Посмотреть Playbook →</a>
+          <button class="btn btn-secondary" onclick="openBooking()">Написать в Telegram <span class="arrow">→</span></button>
+          <a class="link-arrow" href="#process">Как мы работаем →</a>
         </div>
       </div>
     </div>
@@ -763,19 +788,19 @@
 
     <div class="edge-grid reveal">
       <div class="edge-tile">
-        <div class="num">01 / Ценообразование</div>
-        <div class="title">Flat-fee без сюрпризов</div>
-        <div class="desc">Цена тарифа не меняется. Никаких сгорающих credits, overage-счетов, «токены закончились». Ваш счёт в апреле равен счёту в марте.</div>
+        <div class="num">01 / Цена</div>
+        <div class="title">Фиксированная цена без сюрпризов</div>
+        <div class="desc">Цена тарифа не меняется. Никаких сгорающих лимитов, доплат за превышение, «лимиты закончились». Ваш счёт в апреле равен счёту в марте.</div>
       </div>
       <div class="edge-tile">
         <div class="num">02 / Скорость</div>
         <div class="title">5 дней до первой версии</div>
-        <div class="desc">Первая рабочая версия развёрнута и доступна по ссылке за 5 рабочих дней. Следующие итерации — быстрее.</div>
+        <div class="desc">Первая рабочая версия развёрнута и доступна по ссылке за 5 рабочих дней. Следующие улучшения — быстрее.</div>
       </div>
       <div class="edge-tile">
         <div class="num">03 / Гарантия</div>
-        <div class="title">14-day money-back</div>
-        <div class="desc">Не устроил результат первого месяца — возврат 100%. Без обсуждений, без штрафов, без fine-print.</div>
+        <div class="title">Возврат денег в первые 14 дней</div>
+        <div class="desc">Не устроил результат первого месяца — вернём 100%. Без обсуждений, без штрафов, без мелкого шрифта.</div>
       </div>
       <div class="edge-tile">
         <div class="num">04 / Владение</div>
@@ -784,13 +809,13 @@
       </div>
       <div class="edge-tile">
         <div class="num">05 / Качество</div>
-        <div class="title">Senior review каждой строки</div>
-        <div class="desc">AI пишет первый драфт. Инженер проверяет архитектуру, закрывает edge-cases, добавляет тесты. В production-код ничего не попадает без ревью.</div>
+        <div class="title">Проверка каждой строки инженером</div>
+        <div class="desc">AI пишет первую версию. Инженер проверяет архитектуру, закрывает редкие сценарии, добавляет тесты. В работающее приложение ничего не попадает без проверки.</div>
       </div>
       <div class="edge-tile">
-        <div class="num">06 / Коммуникация</div>
-        <div class="title">Чат + async-only</div>
-        <div class="desc">Никаких daily-стендапов по расписанию. Обновления в Чате, синхронно — только когда нужно принять решение.</div>
+        <div class="num">06 / Общение</div>
+        <div class="title">Чат, а не созвоны</div>
+        <div class="desc">Никаких ежедневных созвонов по расписанию. Обновления в чате; встречи — только когда нужно принять решение.</div>
       </div>
     </div>
   </div>
@@ -800,36 +825,36 @@
 <section class="production section-pad">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Production-grade</span>
-      <h2 class="h2">AI пишет код.<br/><span class="hi">Инженер делает его production-ready.</span></h2>
-      <p class="lede">Это разница между прототипом и продуктом.</p>
+      <span class="eyebrow">Промышленное качество</span>
+      <h2 class="h2">AI пишет код.<br/><span class="hi">Инженер доводит его до промышленного уровня.</span></h2>
+      <p class="lede">Это разница между прототипом и настоящим продуктом.</p>
     </div>
 
     <div class="prod-steps reveal">
       <div class="prod-step">
         <div class="num">01</div>
-        <div class="title">AI-draft</div>
-        <div class="desc">Наши AI-агенты пишут первый драфт решения на основе подтверждённого scope.</div>
-        <div class="arrow-flow">→ senior review</div>
+        <div class="title">Первая версия от AI</div>
+        <div class="desc">Наши AI-помощники пишут первый вариант решения на основе согласованного задания.</div>
+        <div class="arrow-flow">→ проверка инженером</div>
       </div>
       <div class="prod-step">
         <div class="num">02</div>
-        <div class="title">Senior review</div>
-        <div class="desc">Инженер делает архитектурный ревью, закрывает edge-cases, пишет тесты, проверяет безопасность, документирует решения.</div>
-        <div class="arrow-flow">→ production</div>
+        <div class="title">Проверка инженером</div>
+        <div class="desc">Инженер оценивает архитектуру, закрывает редкие сценарии, пишет тесты, проверяет безопасность, фиксирует решения в документации.</div>
+        <div class="arrow-flow">→ запуск</div>
       </div>
       <div class="prod-step">
         <div class="num">03</div>
-        <div class="title">Production code</div>
-        <div class="desc">Работающее приложение с CI/CD, runbook, мониторингом и maintenance — в вашем GitHub, с первого коммита.</div>
-        <div class="arrow-flow">→ ваш GitHub</div>
+        <div class="title">Готовое приложение</div>
+        <div class="desc">Работающее приложение с автоматическим выпуском обновлений, инструкцией по эксплуатации, мониторингом и поддержкой — в вашем репозитории с первого дня.</div>
+        <div class="arrow-flow">→ ваш репозиторий</div>
       </div>
     </div>
 
     <div class="anti-bar reveal">
       <div class="warn-num">67%</div>
       <div class="warn-text">
-        AI-сгенерированных приложений содержат критические уязвимости, попадающие сразу в production. Мы не из тех команд.
+        приложений, сгенерированных AI, содержат критические уязвимости и попадают в работу как есть. Мы работаем иначе.
         <small>Источник: ShipAI production audit, 2025</small>
       </div>
     </div>
@@ -842,16 +867,16 @@
     <div class="section-head left">
       <span class="eyebrow">Процесс</span>
       <h2 class="h2">Как мы работаем</h2>
-      <p class="lede">Каждая идея проходит замкнутый цикл Build → Test → Learn. В месяц — 2–3 цикла.</p>
+      <p class="lede">Каждая идея проходит короткий цикл: делаем → проверяем → улучшаем. В месяц — 2–3 цикла.</p>
     </div>
 
     <div class="stack-wrap" id="stackWrap">
     <div class="stack-card">
       <div class="process-body">
         <div class="num">01 <span class="day">День 0</span></div>
-        <h3>Interview → Scope</h3>
-        <p class="desc">30-минутное интервью, в котором мы задаём структурированные вопросы и формулируем бизнес-ограничения. Никакого ТЗ с вашей стороны.</p>
-        <div class="out"><strong>На выходе:</strong> one-pager с фиксацией scope, который вы подтверждаете.</div>
+        <h3>Встреча и согласование объёма</h3>
+        <p class="desc">30-минутная встреча, на которой мы задаём чёткие вопросы и фиксируем ограничения бизнеса. Никакого техзадания с вашей стороны.</p>
+        <div class="out"><strong>Результат:</strong> краткий документ с описанием объёма работ, который вы подтверждаете.</div>
       </div>
       <div class="mockup-wrap">
         <div class="mockup">
@@ -868,9 +893,9 @@
     <div class="stack-card reverse">
       <div class="process-body">
         <div class="num">02 <span class="day">Дни 1–5</span></div>
-        <h3>Build</h3>
-        <p class="desc">Наша мультиагентная AI-платформа генерирует первый драфт кода. Senior-инженер делает архитектурный ревью, пишет тесты, закрывает edge-cases, настраивает CI/CD.</p>
-        <div class="out"><strong>На выходе:</strong> работающее приложение, развёрнутое по ссылке; код в вашем GitHub; README + runbook.</div>
+        <h3>Разработка</h3>
+        <p class="desc">Наша AI-платформа создаёт первую версию кода. Инженер проверяет архитектуру, пишет тесты, закрывает редкие сценарии, настраивает автоматический выпуск обновлений.</p>
+        <div class="out"><strong>Результат:</strong> работающее приложение по ссылке; код в вашем репозитории; подробная инструкция и описание.</div>
       </div>
       <div class="mockup-wrap">
         <div class="mockup m2">
@@ -887,9 +912,9 @@
     <div class="stack-card">
       <div class="process-body">
         <div class="num">03 <span class="day">Дни 6–10</span></div>
-        <h3>Test</h3>
-        <p class="desc">Вы пробуете продукт на реальных пользователях — себе, команде, клиентах. Мы собираем feedback по фиксированной форме: completion rate, confusion points, wishlist.</p>
-        <div class="out"><strong>На выходе:</strong> приоритизированный список изменений для следующей итерации.</div>
+        <h3>Проверка на пользователях</h3>
+        <p class="desc">Вы пробуете продукт на реальных пользователях — себе, команде, клиентах. Мы собираем обратную связь по готовой форме: доходимость до цели, места затыков, пожелания.</p>
+        <div class="out"><strong>Результат:</strong> список изменений по приоритету для следующей доработки.</div>
       </div>
       <div class="mockup-wrap">
         <div class="mockup m3">
@@ -904,11 +929,10 @@
 
     <div class="stack-card reverse">
       <div class="process-body">
-        <div class="num">04 <span class="day">День 10–11</span></div>
-        <h3>Learn → Re-scope</h3>
-        <p class="desc">Следующий цикл стартует не на гипотезе, а на данных опыта. Менеджер формализует re-scope, вы подтверждаете — и цикл запускается заново.</p>
-        <div class="out"><strong>На выходе:</strong> запуск следующего Build-этапа в тот же день. Без нового договора, нового ТЗ, нового счёта.</div>
-        <div style="margin-top:24px"><a href="#playbook" class="hero-secondary-link">Подробнее о методологии BTL →</a></div>
+        <div class="num">04 <span class="day">Дни 10–11</span></div>
+        <h3>Выводы и новый круг</h3>
+        <p class="desc">Следующий цикл начинается не на предположениях, а на данных. Менеджер фиксирует новый объём работ, вы подтверждаете — и цикл запускается заново.</p>
+        <div class="out"><strong>Результат:</strong> старт следующей разработки в тот же день. Без нового договора, без нового техзадания, без нового счёта.</div>
       </div>
       <div class="mockup-wrap">
         <div class="mockup">
@@ -959,7 +983,7 @@
     <div class="section-head">
       <span class="eyebrow">Тарифы</span>
       <h2 class="h2">Простая подписка. Без сюрпризов.</h2>
-      <p class="lede">Фиксированная цена. Пауза в любой момент. 14-day money-back. Скидка 10% на 3 мес, 20% на 6 мес.</p>
+      <p class="lede">Фиксированная цена. Пауза в любой момент. Возврат денег в первые 14 дней. Скидка 10% при оплате за 3 месяца, 20% — за 6 месяцев.</p>
     </div>
 
     <div id="pricingCardsView">
@@ -971,12 +995,12 @@
           <div class="price-row"><span class="price-main">160 000&nbsp;₽</span><span class="price-period">/ мес</span></div>
           <hr/>
           <div class="features">
-            <div class="feat"><span class="check">✓</span><span>1 проект в параллели</span></div>
-            <div class="feat"><span class="check">✓</span><span>SLA: первая версия — <b>5 дней</b></span></div>
-            <div class="feat"><span class="check">✓</span><span>SLA: итерация — <b>2 дня</b></span></div>
-            <div class="feat"><span class="check">✓</span><span>Dedicated менеджер</span></div>
-            <div class="feat"><span class="check">✓</span><span>GitHub, CI/CD, runbook</span></div>
-            <div class="feat feat-muted"><span>—</span><span>Интеграции CRM/API</span></div>
+            <div class="feat"><span class="check">✓</span><span>1 активный проект</span></div>
+            <div class="feat"><span class="check">✓</span><span>Первая версия — <b>за 5 дней</b></span></div>
+            <div class="feat"><span class="check">✓</span><span>Одна доработка — <b>за 2 дня</b></span></div>
+            <div class="feat"><span class="check">✓</span><span>Закреплённый менеджер</span></div>
+            <div class="feat"><span class="check">✓</span><span>Код в вашем репозитории, автоматический выпуск обновлений, инструкции</span></div>
+            <div class="feat feat-muted"><span>—</span><span>Интеграции с CRM и внешними сервисами</span></div>
           </div>
           <button class="btn btn-primary" onclick="openPilot('starter')">Начать <span class="arrow">→</span></button>
         </div>
@@ -990,27 +1014,27 @@
           <hr/>
           <div class="features">
             <div class="feat"><span class="check">✓</span><span>3 проекта параллельно</span></div>
-            <div class="feat"><span class="check">✓</span><span>SLA: первая версия — <b>5 дней</b></span></div>
-            <div class="feat"><span class="check">✓</span><span>SLA: итерация — <b>2 дня</b></span></div>
-            <div class="feat"><span class="check">✓</span><span>Dedicated менеджер + backend dev</span></div>
-            <div class="feat"><span class="check">✓</span><span>GitHub, CI/CD, runbook</span></div>
-            <div class="feat"><span class="check">✓</span><span>Интеграции CRM / API</span></div>
+            <div class="feat"><span class="check">✓</span><span>Первая версия — <b>за 5 дней</b></span></div>
+            <div class="feat"><span class="check">✓</span><span>Одна доработка — <b>за 2 дня</b></span></div>
+            <div class="feat"><span class="check">✓</span><span>Закреплённый менеджер + разработчик</span></div>
+            <div class="feat"><span class="check">✓</span><span>Код в вашем репозитории, автоматический выпуск обновлений, инструкции</span></div>
+            <div class="feat"><span class="check">✓</span><span>Интеграции с CRM и внешними сервисами</span></div>
           </div>
           <button class="btn btn-accent" onclick="openPilot('growth')">Начать <span class="arrow">→</span></button>
         </div>
 
         <div class="price-card">
           <div class="tier-name">SCALE</div>
-          <div class="tier-slot">Выделенная команда + управление портфелем</div>
+          <div class="tier-slot">Выделенная команда и работа над портфелем продуктов</div>
           <hr/>
           <div class="price-row"><span class="price-main">990 000&nbsp;₽</span><span class="price-period">/ мес</span></div>
           <hr/>
           <div class="features">
-            <div class="feat"><span class="check">✓</span><span>SLA: первая версия — <b>3 дня</b></span></div>
-            <div class="feat"><span class="check">✓</span><span>SLA: итерация — <b>1 день</b></span></div>
-            <div class="feat"><span class="check">✓</span><span>Dedicated команда + PM</span></div>
-            <div class="feat"><span class="check">✓</span><span>On-demand meetings</span></div>
-            <div class="feat"><span class="check">✓</span><span>Все интеграции + кастом</span></div>
+            <div class="feat"><span class="check">✓</span><span>Первая версия — <b>за 3 дня</b></span></div>
+            <div class="feat"><span class="check">✓</span><span>Одна доработка — <b>за 1 день</b></span></div>
+            <div class="feat"><span class="check">✓</span><span>Выделенная команда + менеджер проекта</span></div>
+            <div class="feat"><span class="check">✓</span><span>Встречи по запросу</span></div>
+            <div class="feat"><span class="check">✓</span><span>Любые интеграции + индивидуальные задачи</span></div>
           </div>
           <button class="btn btn-primary" onclick="openPilot('scale')">Обсудить <span class="arrow">→</span></button>
         </div>
@@ -1021,17 +1045,17 @@
       <div class="pricing-table reveal">
         <table>
           <thead>
-            <tr><th>Фича</th><th>Starter</th><th class="col-highlight">Growth ⭐</th><th>Scale</th></tr>
+            <tr><th>Что входит</th><th>Starter</th><th class="col-highlight">Growth ⭐</th><th>Scale</th></tr>
           </thead>
           <tbody>
-            <tr><td><b>Цена / мес</b></td><td>160 000 ₽</td><td class="col-highlight"><b>360 000 ₽</b></td><td>990 000 ₽</td></tr>
-            <tr><td>Проектов в параллели</td><td>1</td><td class="col-highlight">2</td><td>3</td></tr>
-            <tr><td>SLA: первая версия</td><td>5 дней</td><td class="col-highlight">5 дней</td><td>3 дня</td></tr>
-            <tr><td>SLA: итерация</td><td>2 дня</td><td class="col-highlight">2 дня</td><td>1 день</td></tr>
-            <tr><td>Dedicated менеджер</td><td>✓</td><td class="col-highlight">✓ + backend</td><td>✓ + PM</td></tr>
-            <tr><td>GitHub · CI/CD · runbook</td><td>✓</td><td class="col-highlight">✓</td><td>✓</td></tr>
-            <tr><td>Интеграции CRM / API</td><td>—</td><td class="col-highlight">✓</td><td>✓ + кастом</td></tr>
-            <tr><td>On-demand meetings</td><td>—</td><td class="col-highlight">—</td><td>✓</td></tr>
+            <tr><td><b>Цена в месяц</b></td><td>160 000 ₽</td><td class="col-highlight"><b>360 000 ₽</b></td><td>990 000 ₽</td></tr>
+            <tr><td>Проектов параллельно</td><td>1</td><td class="col-highlight">3</td><td>Портфель</td></tr>
+            <tr><td>Первая версия</td><td>5 дней</td><td class="col-highlight">5 дней</td><td>3 дня</td></tr>
+            <tr><td>Одна доработка</td><td>2 дня</td><td class="col-highlight">2 дня</td><td>1 день</td></tr>
+            <tr><td>Команда</td><td>менеджер</td><td class="col-highlight">менеджер + разработчик</td><td>выделенная команда + менеджер проекта</td></tr>
+            <tr><td>Код, выпуск обновлений, инструкции</td><td>✓</td><td class="col-highlight">✓</td><td>✓</td></tr>
+            <tr><td>Интеграции с CRM и внешними сервисами</td><td>—</td><td class="col-highlight">✓</td><td>✓ + индивидуальные</td></tr>
+            <tr><td>Встречи по запросу</td><td>—</td><td class="col-highlight">—</td><td>✓</td></tr>
             <tr><td></td><td><button class="btn btn-secondary" onclick="openPilot('starter')">Начать</button></td><td class="col-highlight"><button class="btn btn-accent" onclick="openPilot('growth')">Начать</button></td><td><button class="btn btn-secondary" onclick="openPilot('scale')">Обсудить</button></td></tr>
           </tbody>
         </table>
@@ -1045,8 +1069,8 @@
           <span class="pilot-price">80 000&nbsp;₽</span>
           <span class="pilot-sub">за 5 рабочих дней</span>
         </div>
-        <p>Не готовы к подписке? Начните с пилота. Один продукт. Код в вашем GitHub. 30 дней хостинга и полная документация включены.</p>
-        <div class="pilot-note">→ при переходе на подписку в течение 14 дней — стоимость пилота полностью зачитывается</div>
+        <p>Не готовы к подписке? Начните с пилота. Один продукт. Код в вашем репозитории. 30 дней хостинга и полная документация включены.</p>
+        <div class="pilot-note">→ при переходе на подписку в течение 14 дней стоимость пилота полностью засчитывается в оплату первого месяца</div>
       </div>
       <div>
         <button class="btn btn-accent btn-big" onclick="openPilot('pilot')" style="width:100%">Начать пилот <span class="arrow">→</span></button>
@@ -1054,14 +1078,14 @@
     </div>
 
     <div class="price-fine reveal">
-      <div class="fine">3 мес предоплата — скидка 10%</div>
-      <div class="fine">6 мес предоплата — скидка 20%</div>
-      <div class="fine">Пауза с 3-го месяца до 1 месяца</div>
-      <div class="fine">Enterprise: on-premise, индивидуально</div>
+      <div class="fine">Оплата за 3 месяца — скидка 10%</div>
+      <div class="fine">Оплата за 6 месяцев — скидка 20%</div>
+      <div class="fine">Пауза в подписке — с 3-го месяца, до 1 месяца</div>
+      <div class="fine">Корпоративный формат: размещение на вашем сервере, индивидуальные условия</div>
     </div>
 
     <div style="margin-top: 32px; text-align: center; color: var(--text-muted); font-size: 14px;">
-      Нужен кастомный формат? On-premise? Выделенная команда? <a href="#" onclick="openPilot('enterprise');return false;" style="color: var(--accent); border-bottom: 1px solid currentColor;">Обсудить Enterprise →</a>
+      Нужен индивидуальный формат? Размещение на вашем сервере? Выделенная команда? <a href="#" onclick="openPilot('enterprise');return false;" style="color: var(--accent); border-bottom: 1px solid currentColor;">Обсудить корпоративный тариф →</a>
     </div>
   </div>
 </section>
@@ -1155,7 +1179,7 @@
     <div class="section-head left">
       <span class="eyebrow">Отзывы партнёров</span>
       <h2 class="h2">Что говорят о процессе</h2>
-      <p class="lede">Мы запустились недавно. Вот первые отзывы от партнёров, прошедших через наш BTL-цикл. Блок будет дополняться по мере появления клиентов.</p>
+      <p class="lede">Мы запустились недавно. Вот первые отзывы партнёров, которые прошли с нами полный цикл. Блок будет пополняться по мере появления новых клиентов.</p>
     </div>
     <div class="testi-carousel reveal">
       <div class="testi-track" id="testiTrack">
@@ -1234,7 +1258,7 @@
     <div class="faq-layout">
       <div class="faq-cats" id="faqCats">
         <button class="faq-cat active" data-cat="general">Общие вопросы</button>
-        <button class="faq-cat" data-cat="process">Процесс и методология</button>
+        <button class="faq-cat" data-cat="process">Процесс работы</button>
         <button class="faq-cat" data-cat="pricing">Цены и условия</button>
         <button class="faq-cat" data-cat="tech">Технологии и интеграции</button>
       </div>
@@ -1247,18 +1271,18 @@
 <section style="padding: 80px 0;">
   <div class="footer-cta">
     <h2 class="h2">Готовы запустить ваш продукт?</h2>
-    <p>Начните с пилота за 80 000&nbsp;₽ — или обсудим проект в 15-минутном звонке.</p>
+    <p>Начните с пилота за 80 000&nbsp;₽ — или напишите нам в Telegram, чтобы обсудить идею.</p>
     <div class="ctas">
       <button class="btn btn-accent btn-big" onclick="openPilot('footer')">Начать пилот <span class="arrow">→</span></button>
-      <button class="btn btn-secondary btn-big" onclick="openBooking()">Забронировать звонок <span class="arrow">→</span></button>
+      <button class="btn btn-secondary btn-big" onclick="openBooking()">Написать в Telegram <span class="arrow">→</span></button>
     </div>
     <div class="tag-list">
-      <span><span class="bullet"></span>Production-grade</span>
-      <span><span class="bullet"></span>Документация + runbook</span>
-      <span><span class="bullet"></span>CI/CD с первого дня</span>
-      <span><span class="bullet"></span>Senior review</span>
-      <span><span class="bullet"></span>GitHub коммит #1</span>
-      <span><span class="bullet"></span>14-day money-back</span>
+      <span><span class="bullet"></span>Промышленное качество</span>
+      <span><span class="bullet"></span>Документация и инструкции</span>
+      <span><span class="bullet"></span>Автоматический выпуск обновлений</span>
+      <span><span class="bullet"></span>Проверка инженером</span>
+      <span><span class="bullet"></span>Код в вашем репозитории</span>
+      <span><span class="bullet"></span>Возврат денег в первые 14 дней</span>
     </div>
   </div>
 </section>
@@ -1271,46 +1295,28 @@
         <div class="logo">
           <span class="brace">{</span><span class="ftbd">ftbd</span><span class="brace">}</span><span class="artifact">Artifact</span>
         </div>
-        <p>AI Native Startup Studio. Production-grade продукты в ваш GitHub.</p>
+        <p>AI-студия. Запускаем работающие продукты за дни, а не месяцы.</p>
       </div>
       <div class="footer-col">
-        <h4>Сайт</h4>
+        <h4>Разделы</h4>
         <ul>
           <li><a href="#top">Главная</a></li>
-          <li><a href="#work">Работы</a></li>
-          <li><a href="#playbook">Playbook</a></li>
+          <li><a href="#about">О студии</a></li>
+          <li><a href="#process">Как работаем</a></li>
           <li><a href="#pricing">Тарифы</a></li>
+          <li><a href="#faq">Вопросы и ответы</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Продукт</h4>
+        <h4>Контакты</h4>
         <ul>
-          <li><a href="#process">Процесс</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#">Vibe Coding Rescue</a></li>
-          <li><a href="#">Enterprise</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Компания</h4>
-        <ul>
-          <li><a href="#">О студии</a></li>
-          <li><a href="#">Контакты</a></li>
-          <li><a href="#">Блог</a></li>
-          <li><a href="#">Privacy</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Контакт</h4>
-        <ul>
-          <li><a href="#">Telegram: @ftbd_artifact</a></li>
-          <li><a href="#">hello@ftbd.io</a></li>
-          <li><a href="#">calendly.com/ftbd</a></li>
+          <li><a href="https://t.me/ftbd_artifact" target="_blank" rel="noopener">Telegram: @ftbd_artifact</a></li>
+          <li><a href="mailto:hello@ftbd.io">hello@ftbd.io</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <div>© 2026 {ftbd}Artifact · Privacy · Terms</div>
+      <div>© 2026 {ftbd}Artifact</div>
       <div class="socials">
         <a href="#" class="social" aria-label="X">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
@@ -1328,7 +1334,7 @@
 
 <!-- ====================== COOKIE ====================== -->
 <div class="cookie-bar" id="cookieBar">
-  <span>Мы используем cookies для аналитики. Подробнее в <a href="#" style="color:var(--accent); text-decoration:underline;">Privacy</a>.</span>
+  <span>Мы используем cookies для аналитики.</span>
   <button onclick="document.getElementById('cookieBar').classList.add('hidden')">ОК</button>
 </div>
 
@@ -1338,18 +1344,18 @@
     <button class="modal-close" onclick="closeModal()">✕</button>
     <div id="pilotForm">
       <h3 id="pilotTitle">Обсудить проект</h3>
-      <p id="pilotSub">Опишите идею в 2–3 предложениях. Мы свяжемся в течение 4 рабочих часов для 30-минутного интервью.</p>
+      <p id="pilotSub">Опишите идею в 2–3 предложениях. Мы свяжемся в течение 4 рабочих часов и назначим 30-минутную встречу.</p>
       <form onsubmit="submitPilot(event)">
         <div class="form-field"><label>Ваше имя</label><input name="name" required /></div>
         <div class="form-field"><label>Email</label><input type="email" name="email" required /></div>
         <div class="form-field"><label>Telegram или телефон</label><input name="contact" placeholder="@username" required /></div>
         <div class="form-field"><label>Тариф</label>
           <select name="tier" id="tierSelect">
-            <option value="pilot">Pilot (80 000 ₽)</option>
+            <option value="pilot">Пилот (80 000 ₽)</option>
             <option value="starter">Starter (160 000 ₽ / мес)</option>
             <option value="growth">Growth (360 000 ₽ / мес)</option>
             <option value="scale">Scale (990 000 ₽ / мес)</option>
-            <option value="enterprise">Enterprise</option>
+            <option value="enterprise">Корпоративный</option>
           </select>
         </div>
         <div class="form-field"><label>Кратко об идее</label><textarea name="idea" rows="3" required placeholder="Что хотите построить? Для кого?"></textarea></div>
@@ -1359,7 +1365,7 @@
     <div id="pilotSuccess" style="display:none">
       <h3>Заявка принята ✓</h3>
       <div class="form-success">
-        <b>Готово.</b> Мы получили вашу заявку. Менеджер свяжется в Telegram или по email в течение 4 рабочих часов. Если нужно срочно — пишите в Telegram <b>@ftbd_artifact</b>.
+        <b>Готово.</b> Мы получили вашу заявку. Менеджер свяжется с вами в Telegram или по email в течение 4 рабочих часов. Если нужно срочно — пишите в Telegram <a href="https://t.me/ftbd_artifact" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline"><b>@ftbd_artifact</b></a>.
       </div>
       <button class="btn btn-secondary" style="margin-top:20px" onclick="closeModal()">Закрыть</button>
     </div>
@@ -1373,6 +1379,19 @@ window.addEventListener('scroll', () => {
   if (window.scrollY > 80) header.classList.add('scrolled');
   else header.classList.remove('scrolled');
 }, { passive: true });
+
+// ===================== MOBILE MENU =====================
+(() => {
+  const burger = document.getElementById('burger');
+  const menu = document.getElementById('mobileMenu');
+  if (!burger || !menu) return;
+  const close = () => { menu.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); };
+  burger.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  menu.querySelectorAll('a, button').forEach(el => el.addEventListener('click', close));
+})();
 
 // ===================== HERO DOTS =====================
 const dotsEl = document.getElementById('heroDots');
@@ -1461,27 +1480,27 @@ document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 // ===================== FAQ =====================
 const faqData = {
   general: [
-    { q: 'Что такое {ftbd}Artifact и чем вы отличаетесь от других студий?', a: 'Мы AI Native студия, работающая по подписке. Отличие — в формуле: AI пишет первый драфт, senior-инженер делает production-ready. Код — в вашем GitHub с первого коммита, без платформенного лок-ина. Замкнутый BTL-цикл: Interview → Build → Test → Learn за 10–11 дней.' },
-    { q: 'Для кого вы подходите, а для кого нет?', a: 'Подходим: SMB-фаундерам с идеей без команды, product leads с бэклогом на 12+ месяцев и новыми гипотезами, командам, застрявшим с Lovable/Bolt-прототипами. Не подходим: iOS/Android native, ML-research, hardware, enterprise security audits.' },
-    { q: 'Почему подписка, а не проектная оплата?', a: 'Подписка — это постоянный цикл Build → Test → Learn. Вместо «сделать MVP и уйти» — серия итераций на основе реальных данных. Предсказуемая цена, фиксированная скорость, возможность пауз.' },
+    { q: 'Что такое {ftbd}Artifact и чем вы отличаетесь от других студий?', a: 'Мы студия разработки, работающая по подписке. Отличие — в подходе: AI пишет первую версию кода, опытный инженер доводит её до промышленного качества. Код сразу живёт в вашем репозитории — вы ни к кому не привязаны. Один цикл «обсудить — сделать — проверить — улучшить» занимает 10–11 дней.' },
+    { q: 'Для кого вы подходите, а для кого нет?', a: 'Подходим: основателям малого и среднего бизнеса с идеей, но без команды; продуктовым руководителям, у которых много гипотез и мало ресурсов; командам, застрявшим на недоделанных прототипах. Не подходим: мобильные приложения для iOS/Android, исследования в области машинного обучения, разработка «железа», аудиты безопасности крупных корпораций.' },
+    { q: 'Почему подписка, а не оплата за проект?', a: 'Подписка — это постоянный цикл «делаем — проверяем — улучшаем». Вместо «сделали MVP и ушли» — серия улучшений на основе реальных данных. Предсказуемая цена, стабильная скорость, можно ставить на паузу.' },
   ],
   process: [
-    { q: 'Что такое BTL-цикл?', a: 'Build → Test → Learn. Один замкнутый цикл — 10–11 дней: 1 день Scope, 5 дней Build, 5 дней Test, 1 день Re-scope. В месяц — 2–3 цикла. Подробно — в /playbook.' },
-    { q: 'Как вы гарантируете качество AI-сгенерированного кода?', a: 'Каждая строка проходит senior review: архитектура, edge-cases, тесты, документация. В production-код ничего не попадает без ревью. Плюс автоматические CI/CD-проверки.' },
-    { q: 'Что происходит, если мне не нравится результат?', a: '14-day money-back на первый месяц — возврат 100% без обсуждений. Дальше — можно поставить подписку на паузу с 3-го месяца.' },
-    { q: 'Как выглядит типичная неделя работы с вами?', a: 'Понедельник: re-scope цикла в Чате. Вт–Пт: Build с ежедневными async-апдейтами. Следующий Пн: деплой + старт Test. Synchronous-звонки — только когда нужно принять решение.' },
+    { q: 'Как устроен цикл работы?', a: 'Один цикл — 10–11 дней: 1 день на согласование объёма работ, 5 дней на разработку, 5 дней на проверку на пользователях, 1 день на выводы и новый круг. В месяц — 2–3 таких цикла.' },
+    { q: 'Как вы гарантируете качество кода, написанного AI?', a: 'Каждая строка проходит проверку инженером: архитектура, редкие сценарии, тесты, документация. В работающее приложение ничего не попадает без проверки. Плюс автоматические проверки на каждом обновлении.' },
+    { q: 'Что, если мне не нравится результат?', a: 'Возврат 100% денег в первые 14 дней — без обсуждений. Дальше подписку можно поставить на паузу начиная с 3-го месяца.' },
+    { q: 'Как выглядит типичная неделя работы с вами?', a: 'Понедельник: согласование новой задачи в чате. Вт–Пт: разработка с ежедневными обновлениями в чате. Следующий понедельник: запуск и начало проверки на пользователях. Созвоны — только когда нужно принять решение.' },
   ],
   pricing: [
-    { q: 'Можно ли поставить подписку на паузу?', a: 'Да, начиная с 3-го месяца можно поставить подписку на паузу до 1 месяца. Проекты сохраняются, прогресс не теряется.' },
-    { q: 'Что входит в каждый тариф?', a: 'Starter: 1 проект, SLA 5/2 дня. Growth: 2 проекта, + backend dev, интеграции. Scale: 3 проекта, + PM, SLA 3/1 день, все интеграции и кастом. Подробная таблица — в секции Pricing.' },
-    { q: 'Чем пилот отличается от первого месяца подписки?', a: 'Пилот — разовая оплата 80 000 ₽ за один продукт за 5 дней. Отличный способ проверить процесс без обязательств. При переходе на подписку в течение 14 дней — стоимость пилота зачитывается.' },
-    { q: 'Какие есть скидки?', a: '10% при предоплате на 3 месяца, 20% — на 6 месяцев. Для Enterprise — индивидуальные условия.' },
+    { q: 'Можно ли поставить подписку на паузу?', a: 'Да, начиная с 3-го месяца. Можно приостановить работу до 1 месяца. Проекты сохраняются, прогресс не теряется.' },
+    { q: 'Что входит в каждый тариф?', a: 'Starter: 1 проект, первая версия за 5 дней. Growth: 3 проекта параллельно, дополнительный разработчик, интеграции. Scale: выделенная команда, менеджер проекта, первая версия за 3 дня, любые интеграции. Подробная таблица — в блоке «Тарифы».' },
+    { q: 'Чем пилот отличается от первого месяца подписки?', a: 'Пилот — разовая оплата 80 000 ₽ за один продукт за 5 дней. Хороший способ проверить, как мы работаем, без обязательств. Если после пилота перейдёте на подписку в течение 14 дней — стоимость пилота полностью зачтём.' },
+    { q: 'Какие есть скидки?', a: '10% при оплате за 3 месяца вперёд, 20% — за 6 месяцев. Для корпоративного формата — индивидуальные условия.' },
   ],
   tech: [
-    { q: 'Какой стек вы используете?', a: 'Frontend: Next.js / Astro / React. Backend: Node.js, Python, FastAPI. Databases: Postgres, Supabase. AI: Claude, GPT-4, Anthropic API, OpenAI API. Deploy: Vercel, Railway, Yandex.Cloud.' },
-    { q: 'Могу ли я забрать код и работать с ним самостоятельно?', a: 'Да, всегда. Репозиторий создаётся в вашем GitHub-аккаунте с первого дня. Мы работаем в нём как контрибьюторы. Уйти можно в любой момент — код, документация, runbook остаются у вас.' },
-    { q: 'Интегрируетесь ли вы с существующими системами?', a: 'Да: CRM (Bitrix24, amoCRM, HubSpot), API, SSO, Auth-провайдеры, платёжные системы. Входит в Growth и Scale. В Starter — базовые интеграции по запросу.' },
-    { q: 'Что не входит в ваш scope?', a: 'iOS/Android native-приложения, ML-модели с нуля (только интеграции готовых), hardware, enterprise security audits (SOC2, ISO). Всё остальное — обсуждаемо.' },
+    { q: 'На чём вы пишете?', a: 'Интерфейс: Next.js, React. Серверная часть: Node.js, Python. Базы данных: Postgres, Supabase. AI: Claude, GPT-4 и другие модели. Размещение: Vercel, Railway, Yandex.Cloud и другие провайдеры по запросу.' },
+    { q: 'Могу ли я забрать код и работать с ним самостоятельно?', a: 'Да, всегда. Репозиторий с кодом создаётся на вашем аккаунте с первого дня. Мы работаем в нём как соавторы. Уйти можно в любой момент — код, документация и инструкции остаются у вас.' },
+    { q: 'Интегрируетесь ли вы с существующими системами?', a: 'Да: CRM (Bitrix24, amoCRM, HubSpot), внешние сервисы, системы авторизации, платёжные системы. Входит в Growth и Scale. В Starter — базовые интеграции по запросу.' },
+    { q: 'Что вы не делаете?', a: 'Мобильные приложения для iOS и Android, создание моделей машинного обучения с нуля (только используем готовые), «железо», аудиты безопасности крупных корпораций. Всё остальное — обсуждаемо.' },
   ],
 };
 let activeCat = 'general';
@@ -1566,15 +1585,15 @@ function openPilot(source) {
   const title = document.getElementById('pilotTitle');
   const sub = document.getElementById('pilotSub');
   if (source === 'enterprise') {
-    title.textContent = 'Обсудить Enterprise';
-    sub.textContent = 'On-premise, NDA, выделенная команда — расскажите, что нужно.';
+    title.textContent = 'Обсудить корпоративный тариф';
+    sub.textContent = 'Размещение на вашем сервере, соглашение о неразглашении, выделенная команда — расскажите, что нужно.';
   } else {
     title.textContent = 'Обсудить проект';
-    sub.textContent = 'Опишите идею в 2–3 предложениях. Мы свяжемся в течение 4 рабочих часов для 30-минутного интервью.';
+    sub.textContent = 'Опишите идею в 2–3 предложениях. Мы свяжемся в течение 4 рабочих часов и назначим 30-минутную встречу.';
   }
 }
 function openBooking() {
-  alert('Calendly integration placeholder: calendly.com/ftbd-artifact/15min');
+  window.open('https://t.me/ftbd_artifact', '_blank', 'noopener');
 }
 function closeModal() {
   document.getElementById('pilotModal').classList.remove('visible');
